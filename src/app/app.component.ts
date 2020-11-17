@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -10,15 +10,17 @@ export class AppComponent {
  constructor(private formBuilder:FormBuilder){}
 
  profileForm = this.formBuilder.group({
-   firstName:[''],
-   lastName:[''],
-   address:[''],
-   dob:[''],
-   gender:['']
+   firstName:['',[Validators.required]],
+   lastName:['',[Validators.required]],
+   address:['',[Validators.required]],
+   dob:['',[Validators.required]],
+   gender:['',[Validators.required]]
  });
 
  saveForm(){
-   console.log('Form data is ', this.profileForm.value);
+   if(this.profileForm.valid){
+     console.log('Profile form data :: ', this.profileForm.value);
+   }
  }
 
 }
