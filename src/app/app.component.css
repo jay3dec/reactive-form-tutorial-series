@@ -13,3 +13,10 @@
 .form-container{
     margin: 100px;
 }
+
+.invalid{
+    color:#f44336;
+}
+.small-font{
+    font-size: 12px;
+}

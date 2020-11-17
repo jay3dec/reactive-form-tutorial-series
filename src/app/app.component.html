@@ -1,47 +1,51 @@
-<form [formGroup]="profileForm" class="form-container">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Profile Information</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="firstName" matInput placeholder="First name">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input  formControlName="lastName" matInput placeholder="Last name">
-            </mat-form-field>
-          </div>
+<form [formGroup]="profileForm" #ngForm="ngForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        Profile Information <span *ngIf="ngForm.submitted && !profileForm.valid" class="small-font"
+          [ngClass]="{'invalid': ngForm.submitted }">* required</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="firstName" matInput placeholder="First name">
+          </mat-form-field>
         </div>
-        <div class="row">
-          <div class="col-sm-6">
-            <mat-form-field class="full-width">
-              <textarea  formControlName="address" matInput placeholder="Address"></textarea>
-            </mat-form-field>
-          </div>
-          <div class="col-md-6 top-padding">
-                <mat-form-field class="full-width" appearance="fill">
-                    <mat-label>Select DOB</mat-label>
-                    <input  formControlName="dob" matInput [matDatepicker]="picker">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>                  
-            </div>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="lastName" matInput placeholder="Last name">
+          </mat-form-field>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <mat-radio-group  formControlName="gender" class="margin-left">
-                    <mat-radio-button value="male"> Male </mat-radio-button>
-                    <mat-radio-button value="female"> Female </mat-radio-button>
-                </mat-radio-group>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field class="full-width">
+            <textarea formControlName="address" matInput placeholder="Address"></textarea>
+          </mat-form-field>
         </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="saveForm()" mat-raised-button color="primary">Save</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+        <div class="col-md-6 top-padding">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Select DOB</mat-label>
+            <input formControlName="dob" matInput [matDatepicker]="picker">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <mat-radio-group [ngClass]="{'invalid': ngForm.submitted && profileForm.get('gender').invalid}"
+            formControlName="gender" class="margin-left">
+            <mat-radio-button value="male"> Male </mat-radio-button>
+            <mat-radio-button value="female"> Female </mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveForm()" mat-raised-button color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
