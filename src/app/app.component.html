@@ -11,6 +11,7 @@
         <div class="col-md-6">
           <mat-form-field class="full-width">
             <input formControlName="firstName" matInput placeholder="First name">
+            <mat-hint class="invalid" *ngIf="profileForm.get('firstName').errors && profileForm.get('firstName').errors.amperSandError">AmperSand not allowed</mat-hint>
           </mat-form-field>
         </div>
         <div class="col-md-6">
@@ -19,7 +20,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <div class="row margin-top-20">
         <div class="col-sm-6">
           <mat-form-field class="full-width">
             <textarea formControlName="address" matInput placeholder="Address"></textarea>
@@ -34,7 +35,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <div class="row margin-top-20">
         <div class="col-md-12">
           <mat-radio-group [ngClass]="{'invalid': ngForm.submitted && profileForm.get('gender').invalid}"
             formControlName="gender" class="margin-left">
